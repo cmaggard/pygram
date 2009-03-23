@@ -14,8 +14,8 @@ class Grammar(object):
 
   def _process_line(self, line):
     line = line.strip()
-    if ":==" in line:
-      split_rule = line.partition(":==")
+    if "::=" in line:
+      split_rule = line.partition("::=")
       self._cur_token = split_rule[0].strip()
       line = split_rule[2].strip()
     self._process_rules(line)
