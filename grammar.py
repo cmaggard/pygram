@@ -44,12 +44,10 @@ class Grammar(object):
     idx = 0
     x = self.regex.search(new_expr)
     while x:
-      print new_expr
       new_expr = self._replace(new_expr, x.groups(), genome[idx])
       idx += 1
       if idx >= l_gen:
         idx %= l_gen
       x = self.regex.search(new_expr)
-    print new_expr
     return new_expr 
 
