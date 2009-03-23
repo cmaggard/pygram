@@ -1,7 +1,6 @@
 from __future__ import with_statement
 
 class Grammar(object):
-  SEP = ':=='
   def __init__(self, filename):
     self.tokens = {}
     self._process_file(filename)
