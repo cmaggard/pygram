@@ -1,9 +1,13 @@
-from __future__ import with_statement
+import re
 
 class Grammar(object):
   def __init__(self, filename):
+    self.regex = re.compile("(<([-\w]+?)>)")
     self.tokens = {}
     self._process_file(filename)
+    self._dims = {}
+    for x in self.tokens.keys():
+      self._dims[x] = len(self.tokens[x])
 
   def _process_file(self, filename):
     self._cur_token = ""
@@ -30,4 +34,22 @@ class Grammar(object):
         self.tokens[self._cur_token] = []
         self.tokens[self._cur_token].append(rule) 
 
+  def _replace(self, expr, match, codon):
+    rep_str = self.tokens[match[1]][codon % self._dims[match[1]]]
+    return expr.replace(match[0], rep_str, 1)
+
+  def expand(self, expr, genome):
+    l_gen = len(genome)
+    new_expr = expr
+    idx = 0
+    x = self.regex.search(new_expr)
+    while x:
+      print new_expr
+      new_expr = self._replace(new_expr, x.groups(), genome[idx])
+      idx += 1
+      if idx >= l_gen:
+        idx %= l_gen
+      x = self.regex.search(new_expr)
+    print new_expr
+    return new_expr 
 
