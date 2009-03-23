@@ -1,0 +1,8 @@
+alpha :== <greeting> <noun>
+
+greeting :== Hello | Yarr
+           | Goodbye
+
+noun :==  World
+       |  Mars
+
