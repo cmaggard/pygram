@@ -1,8 +1,8 @@
-alpha ::= <greeting> <noun> | <greeting> and <greeting> <noun>
+<alpha> ::= <greeting> <noun> | <greeting> and <greeting> <noun>
 
-greeting ::= Hello | Yarr
+<greeting> ::= Hello | Yarr
            | Goodbye
 
-noun ::=  World
+<noun> ::=  World
        |  Mars
 
