@@ -38,8 +38,14 @@ class Grammar(object):
     rep_str = self.tokens[match][codon % self._dims[match]]
     return expr.replace(match, rep_str, 1)
 
-  def expand(self, expr, genome):
+  def expand(self, genome, expr = "<start>"):
+    """This function expands a string using the loaded grammar
+       and passed genome.  The default grammar symbol is <start>,
+       but an alternate start string can be passed in after the
+       genome."""
     l_gen = len(genome)
+    if not l_gen:
+      raise ValueError, "Empty array passed for genome"
     new_expr = expr
     idx = 0
     x = self.regex.search(new_expr)
